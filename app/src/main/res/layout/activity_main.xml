@@ -35,7 +35,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Play"
+        android:text="bblabla"
         android:textSize="15dp"
         android:onClick="play"
         android:textColor="@color/white"/>
