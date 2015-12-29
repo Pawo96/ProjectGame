@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 public class MainActivity extends Activity {
 
     MediaPlayer music;
+    MediaPlayer click;
 
 
     @Override
@@ -34,49 +35,63 @@ public class MainActivity extends Activity {
         TextView txtV = (TextView)findViewById(R.id.menuTitle);
         txtV.setTypeface(face);
         music = MediaPlayer.create(this, R.raw.menu);
+        click = MediaPlayer.create(this, R.raw.click);
+        Intent intent = getIntent();
+        Integer position = intent.getIntExtra("position", 0);
+        music.seekTo(position);
         music.start();
+        music.setLooping(true);
 
     }
 
     public void showoption(View view) {
         Intent intent = new Intent(this, OptionActivity.class);
+        click.start();
+        intent.putExtra("position",music.getCurrentPosition());
         music.stop();
         startActivity(intent);
+        finish();
     }
 
     public void showequipment(View view) {
         Intent intent = new Intent(this, EquipChange.class);
+        click.start();
         music.stop();
         startActivity(intent);
     }
 
     public void showcharacter(View view) {
         Intent intent = new Intent(this, Character.class);
+        click.start();
         music.stop();
         startActivity(intent);
     }
 
     public void showdata(View view) {
         Intent intent = new Intent(this, ManageDataActivity.class);
+        click.start();
         music.stop();
         startActivity(intent);
     }
 
     public void battle(View view) {
         Intent intent = new Intent(this, OptionActivity.class);
+        click.start();
         music.stop();
         startActivity(intent);
     }
 
     public void play(View view) {
         Intent intent = new Intent(this, CharacterDB.class);
+        click.start();
         music.stop();
         startActivity(intent);
     }
 
     public void exit(View v) {
-        // TODO Auto-generated method stub
+        click.start();
         finish();
         System.exit(0);
     }
+
 }
