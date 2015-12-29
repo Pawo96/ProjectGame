@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp" >
+
+    <LinearLayout
+        android:id="@+id/myScreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".MyActivity" >
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#00000000"
+            android:enabled="false"
+            android:textAlignment="center"
+            android:text="Optionen"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp"
+
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#00000000"
+            android:enabled="false"
+            android:paddingTop="80dp"
+            android:text="Hintergrundfarbe wählen"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+
+
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/textViewValueRBG"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textViewBG1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="min"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarBGColor_R"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="255"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/textViewBG1.5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="max"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/textViewValueGBG"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textViewBG2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="min"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarBGColor_G"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="255"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/textViewBG2.5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="max"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/textViewValueBBG"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textViewBG3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="min"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="12sp" />
+
+            <SeekBar
+                android:id="@+id/seekBarBGColor_B"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:max="255"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/textViewBG3.5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="max"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <!-- Notification senden ; Buttons -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="30dp" >
+
+
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onToggleClicked"
+                android:textOff="off"
+                android:textOn="on"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="500dp"/>
+
+
+
+
+            <Button
+                android:id="@+id/buttondata"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:drawableTop="@drawable/home"
+                android:text="Back to menu"
+                android:layout_marginRight="155dp"
+                android:layout_marginTop="500dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:onClick="gohome"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

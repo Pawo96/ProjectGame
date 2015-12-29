@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.tswl.dh.dasprojekt.EquipChange">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_marginRight="20dp"
+                android:text="Weapons"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView android:id="@+id/weapon1" />
+                    <TextView android:id="@+id/weapon2"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/weapon3" />
+                    <TextView android:id="@+id/weapon4"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/weapon5" />
+                    <TextView android:id="@+id/weapon6"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/weapon7" />
+                    <TextView android:id="@+id/weapon8"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/weapon9" />
+                    <TextView android:id="@+id/weapon10"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/weapon11" />
+                    <TextView android:id="@+id/weapon12"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerweapon"
+                android:spinnerMode="dropdown"
+                android:entries="@array/weapon">
+            </Spinner>
+
+        </TableRow>
+
+
+
+
+
+        <TableRow
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_marginRight="20dp"
+                android:text="Armor"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView android:id="@+id/armor1" />
+                    <TextView android:id="@+id/armor2"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/armor3" />
+                    <TextView android:id="@+id/armor4"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/armor5" />
+                    <TextView android:id="@+id/armor6"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/armor7" />
+                    <TextView android:id="@+id/armor8"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/armor9" />
+                    <TextView android:id="@+id/armor10"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/armor11" />
+                    <TextView android:id="@+id/armor12"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerarmor"
+                android:spinnerMode="dropdown"
+                android:entries="@array/armor">
+            </Spinner>
+
+        </TableRow>
+
+
+
+
+        <TableRow
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_marginRight="20dp"
+                android:text="Boots"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView android:id="@+id/boot1" />
+                    <TextView android:id="@+id/boot2"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/boot3" />
+                    <TextView android:id="@+id/boot4"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/boot5" />
+                    <TextView android:id="@+id/boot6"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/boot7" />
+                    <TextView android:id="@+id/boot8"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/boot9" />
+                    <TextView android:id="@+id/boot10"/>
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/boot11" />
+                    <TextView android:id="@+id/boot12"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerboot"
+                android:spinnerMode="dropdown"
+                android:entries="@array/boot">
+            </Spinner>
+
+        </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>

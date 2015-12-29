@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/buttonplay"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+
+        android:text="Save Data"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:onClick="save"/>
+
+
+
+
+
+    <Button
+        android:id="@+id/buttoncharacter"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:text="Reset Data"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="225dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:onClick="reset"/>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Manage Data"
+        android:id="@+id/textView"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30dp" />
+
+
+</RelativeLayout>

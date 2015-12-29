@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Project Game"
+        android:fontFamily="immoral"
+        android:id="@+id/menuTitle"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Welcome to &quot;Project Game&quot; User!"
+        android:id="@+id/textView2"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/buttonplay"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Play"
+        android:textSize="15dp"
+        android:onClick="play"
+        android:textColor="@color/white"/>
+
+
+    <Button
+        android:id="@+id/buttonbattle"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Battle"
+        android:textSize="15dp"
+        android:onClick="battle"
+        android:textColor="@color/white"/>
+
+
+
+    <Button
+        android:id="@+id/buttoncharacter"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Character"
+        android:textSize="15dp"
+        android:onClick="showcharacter"
+        android:textColor="@color/white"/>
+
+
+    <Button
+        android:id="@+id/buttonequipment"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Equipment"
+        android:textSize="15dp"
+        android:onClick="showequipment"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/buttondata"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Manage Data"
+        android:textSize="15dp"
+        android:onClick="showdata"
+        android:textColor="@color/white"/>
+
+
+    <Button
+        android:id="@+id/buttonoptions"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Options"
+        android:textSize="15dp"
+        android:onClick="showoption"
+        android:textColor="@color/white"/>
+
+
+    <Button
+        android:id="@+id/buttonexit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Close Game"
+        android:textSize="15dp"
+        android:onClick="exit"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string-array name="weapon">
+        <item>none</item>
+        <item>Axe</item>
+        <item>Staff</item>
+        <item>Sword</item>
+    </string-array>
+    <string-array name="armor">
+        <item>none</item>
+        <item>Plate Armor</item>
+        <item>Cloth Robe</item>
+        <item>Leather Armor</item>
+    </string-array>
+    <string-array name="boot">
+        <item>none</item>
+        <item>Plate Boot</item>
+        <item>Cloth Boot</item>
+        <item>Leather Boot</item>
+    </string-array>
+    <string name="title_activity_manage_data_activiy">ManageDataActiviy</string>
+    <string name="title_activity_manage_data">ManageDataActivity</string>
+    <string name="title_activity_option">OptionActivity</string>
+</resources>
