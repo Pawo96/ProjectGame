@@ -26,7 +26,7 @@ public class Game extends AppCompatActivity {
         final int rows = 7;
         final int columns = 15;
 
-        createTable(rows, columns, position);
+        createTable(rows, columns, position, "down");
 
 
         final LinearLayout control = new LinearLayout(this);
@@ -42,7 +42,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0] - 1, position[1]};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition);
+                createTable(rows, columns, newposition, "up");
                 linearLayout.addView(control);
             }
         });
@@ -57,7 +57,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0], position[1] + 1};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition);
+                createTable(rows, columns, newposition, "right");
                 linearLayout.addView(control);
             }
         });
@@ -72,7 +72,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0] + 1, position[1]};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition);
+                createTable(rows, columns, newposition, "down");
                 linearLayout.addView(control);
             }
         });
@@ -87,11 +87,19 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0], position[1] - 1};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition);
+                createTable(rows, columns, newposition, "left");
                 linearLayout.addView(control);
             }
         });
         control.addView(left);
+
+        Button b = new Button(this);
+        b.setText("B");
+        control.addView(b);
+
+        Button a = new Button(this);
+        a.setText("A");
+        control.addView(a);
 
 
 
@@ -101,7 +109,7 @@ public class Game extends AppCompatActivity {
 
     }
 
-    public void createTable(int i,int j,int[] position){
+    public void createTable(int i,int j,int[] position,String dir){
 
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.gametable);
         TableLayout tableLayout = new TableLayout(this);
@@ -120,8 +128,23 @@ public class Game extends AppCompatActivity {
 
                 imageView.setBackgroundResource(R.drawable.tilea2_00_00);
 
-                if ((x==position[0])&&(y==position[1])){
-                    imageView.setImageResource(R.drawable.vx_characters_0_0);
+                if((x==2)&&(y==2)){
+                    imageView.setImageResource(R.drawable.tilea2_04_06);
+                }
+                else if ((x==position[0])&&(y==position[1])){
+                    if(dir.equals("down")){
+                        imageView.setImageResource(R.drawable.vx_characters_1_0);
+                    }
+                    else if (dir.equals("left")){
+                        imageView.setImageResource(R.drawable.vx_characters_1_1);
+                    }
+                    else if (dir.equals("up")){
+                        imageView.setImageResource(R.drawable.vx_characters_1_3);
+                    }
+                    else if (dir.equals("right")){
+                        imageView.setImageResource(R.drawable.vx_characters_1_2);
+                    }
+
                 }
 
                 tableRow.addView(imageView);
