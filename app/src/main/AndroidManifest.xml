@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tswl.dh.dasprojekt" >
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".ManageDataActiviy"
+            android:name=".ManageDataActivity"
             android:label="@string/title_activity_manage_data_activiy"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
@@ -41,6 +43,8 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".CharacterDB" >
+        </activity>
+        <activity android:name=".Game" >
         </activity>
     </application>
 
