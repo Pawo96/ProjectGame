@@ -1,5 +1,6 @@
 package com.tswl.dh.dasprojekt;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/immoral.ttf");
         TextView txtV = (TextView)findViewById(R.id.menuTitle);
         txtV.setTypeface(face);
@@ -58,6 +60,7 @@ public class MainActivity extends Activity {
         click.start();
         music.stop();
         startActivity(intent);
+        finish();
     }
 
     public void showcharacter(View view) {
@@ -65,6 +68,7 @@ public class MainActivity extends Activity {
         click.start();
         music.stop();
         startActivity(intent);
+        finish();
     }
 
     public void showdata(View view) {
@@ -72,6 +76,7 @@ public class MainActivity extends Activity {
         click.start();
         music.stop();
         startActivity(intent);
+        finish();
     }
 
     public void battle(View view) {
@@ -79,6 +84,7 @@ public class MainActivity extends Activity {
         click.start();
         music.stop();
         startActivity(intent);
+        finish();
     }
 
     public void play(View view) {
@@ -86,6 +92,7 @@ public class MainActivity extends Activity {
         click.start();
         music.stop();
         startActivity(intent);
+        finish();
     }
 
     public void exit(View v) {

@@ -38,13 +38,12 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".ManageDataActivity"
-            android:label="@string/title_activity_manage_data"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".CharacterDB"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".CharacterDB" >
-        </activity>
-        <activity android:name=".Game" >
+        <activity
+            android:name=".Game"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
