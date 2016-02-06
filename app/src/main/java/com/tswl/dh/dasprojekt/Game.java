@@ -1,5 +1,7 @@
 package com.tswl.dh.dasprojekt;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +15,19 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
+
 public class Game extends AppCompatActivity {
 
     int[] position = {4 ,5};
+    int[] map = new int[1];
+    String[] feld = new String[1];
+    int rows;
+    int columns;
+    int n = 1;
+
+    String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +35,32 @@ public class Game extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        final int rows = 7;
-        final int columns = 15;
+        //Datenbankverbindung
+        BackgroundTask backgroundTask = new BackgroundTask(this);
+        try {
+            text = backgroundTask.execute("map", "A").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        createTable(rows, columns, position, "down");
+        //Stringhandling
+        map[0]=0;
+        for(int i = 0;i < text.length();i++){
+            if(text.charAt(i) == ';'){map=extendArraySize(map);map[n]=i;n++;}
+        }
+
+        rows = Integer.parseInt(text.substring(map[0]+1,map[1]));
+        columns = Integer.parseInt(text.substring(map[1]+1,map[2]));
+
+       for (int i = 0;i < map.length-3; i++){
+           feld=Arrays.copyOf(feld,feld.length+1);
+           feld[i]=text.substring(map[i+2]+1,map[i+3]);
+        }
+
+        //Map erstellen
+        createTable(rows, columns, position, "down",feld);
 
 
         final LinearLayout control = new LinearLayout(this);
@@ -42,7 +76,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0] - 1, position[1]};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "up");
+                createTable(rows, columns, newposition, "up",feld);
                 linearLayout.addView(control);
             }
         });
@@ -57,7 +91,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0], position[1] + 1};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "right");
+                createTable(rows, columns, newposition, "right",feld);
                 linearLayout.addView(control);
             }
         });
@@ -72,7 +106,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0] + 1, position[1]};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "down");
+                createTable(rows, columns, newposition, "down",feld);
                 linearLayout.addView(control);
             }
         });
@@ -87,7 +121,7 @@ public class Game extends AppCompatActivity {
                 int[] newposition = {position[0], position[1] - 1};
                 setPosition(newposition);
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "left");
+                createTable(rows, columns, newposition, "left",feld);
                 linearLayout.addView(control);
             }
         });
@@ -109,7 +143,7 @@ public class Game extends AppCompatActivity {
 
     }
 
-    public void createTable(int i,int j,int[] position,String dir){
+    public void createTable(int i,int j,int[] position,String dir,String[] feld){
 
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.gametable);
         TableLayout tableLayout = new TableLayout(this);
@@ -117,21 +151,20 @@ public class Game extends AppCompatActivity {
         tableLayout.setLayoutParams(tableParams);
         tableLayout.setBackgroundColor(Color.BLACK);
 
-        for (Integer x = 0;x < i;x++){
+        for (int x = 0;x < i;x++){
 
             TableRow tableRow = new TableRow(this);
             tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
 
-            for (Integer y = 0;y < j;y++){
-
+            for (int y = 0;y < j;y++){
                 ImageView imageView = new ImageView(this);
 
-                imageView.setBackgroundResource(R.drawable.tilea2_00_00);
-
-                if((x==2)&&(y==2)){
-                    imageView.setImageResource(R.drawable.tilea2_04_06);
+                if(feld[x*j+y].equals("tilea2_00_00")){
+                    imageView.setBackgroundResource(R.drawable.tilea2_00_00);
                 }
-                else if ((x==position[0])&&(y==position[1])){
+                else imageView.setBackgroundResource(R.drawable.tilea1_0_0);
+
+                if ((x==position[0])&&(y==position[1])){
                     if(dir.equals("down")){
                         imageView.setImageResource(R.drawable.vx_characters_1_0);
                     }
@@ -166,5 +199,14 @@ public class Game extends AppCompatActivity {
     public void setPosition(int[] position){
         this.position = position;
     }
+
+    public int[] extendArraySize(int[] array){
+        int[] temp = array.clone();
+        array = new int[array.length + 1];
+        System.arraycopy(temp, 0, array, 0, temp.length);
+        return array;
+    }
+
+
 
 }
