@@ -1,7 +1,5 @@
 package com.tswl.dh.dasprojekt;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
@@ -21,13 +18,18 @@ import java.util.concurrent.ExecutionException;
 public class Game extends AppCompatActivity {
 
     int[] position = {4 ,5};
-    int[] map = new int[1];
-    String[] feld = new String[1];
-    int rows;
-    int columns;
+    int[] map1 = new int[1];
+    int[] map2 = new int[1];
+    String[] feld1 = new String[1];
+    String[] feld2 = new String[1];
+    int rows1;
+    int rows2;
+    int columns1;
+    int columns2;
     int n = 1;
 
-    String text;
+    String text1;
+    String text2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,11 @@ public class Game extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         //Datenbankverbindung
-        BackgroundTask backgroundTask = new BackgroundTask(this);
+        BackgroundTask backgroundTask1 = new BackgroundTask(this);
+        BackgroundTask backgroundTask2 = new BackgroundTask(this);
         try {
-            text = backgroundTask.execute("map", "A").get();
+            text1 = backgroundTask1.execute("map", "A").get();
+            text2 = backgroundTask2.execute("map", "B").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -46,21 +50,40 @@ public class Game extends AppCompatActivity {
         }
 
         //Stringhandling
-        map[0]=0;
-        for(int i = 0;i < text.length();i++){
-            if(text.charAt(i) == ';'){map=extendArraySize(map);map[n]=i;n++;}
+        map1[0]=0;
+        for(int i = 0;i < text1.length();i++){
+            if(text1.charAt(i) == ';'){map1=extendArraySize(map1);map1[n]=i;n++;}
         }
 
-        rows = Integer.parseInt(text.substring(map[0]+1,map[1]));
-        columns = Integer.parseInt(text.substring(map[1]+1,map[2]));
+        rows1 = Integer.parseInt(text1.substring(map1[0]+1,map1[1]));
+        columns1 = Integer.parseInt(text1.substring(map1[1]+1,map1[2]));
 
-       for (int i = 0;i < map.length-3; i++){
-           feld=Arrays.copyOf(feld,feld.length+1);
-           feld[i]=text.substring(map[i+2]+1,map[i+3]);
+       for (int i = 0;i < map1.length-3; i++){
+           feld1=Arrays.copyOf(feld1,feld1.length+1);
+           feld1[i]=text1.substring(map1[i+2]+1,map1[i+3]);
         }
+
+        n=1;
+
+
+        //Stringhandling
+        map2[0]=0;
+        for(int i = 0;i < text2.length();i++){
+            if(text2.charAt(i) == ';'){map2=extendArraySize(map2);map2[n]=i;n++;}
+        }
+
+        rows2 = Integer.parseInt(text2.substring(map2[0]+1,map2[1]));
+        columns2 = Integer.parseInt(text2.substring(map2[1]+1,map2[2]));
+
+        for (int i = 0;i < map2.length-3; i++){
+            feld2=Arrays.copyOf(feld2,feld2.length+1);
+            feld2[i]=text2.substring(map2[i+2]+1,map2[i+3]);
+        }
+
 
         //Map erstellen
-        createTable(rows, columns, position, "down",feld);
+        createTable(rows1, columns1, "down",feld1,feld2);
+
 
 
         final LinearLayout control = new LinearLayout(this);
@@ -73,10 +96,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                int[] newposition = {position[0] - 1, position[1]};
-                setPosition(newposition);
+                if(position[0]-1 >= 0 && feld2[(position[0]-1)*(columns1-1)+position[1]]!= "a")
+                {
+                    int[] newposition = {position[0] - 1, position[1]};
+                    setPosition(newposition);
+                }
+
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "up",feld);
+                createTable(rows1, columns1, "up",feld1,feld2);
                 linearLayout.addView(control);
             }
         });
@@ -88,10 +115,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                int[] newposition = {position[0], position[1] + 1};
-                setPosition(newposition);
+                if(position[1]+1 < columns1)
+                {
+                    int[] newposition = {position[0], position[1] + 1};
+                    setPosition(newposition);
+                }
+
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "right",feld);
+                createTable(rows1, columns1, "right",feld1,feld2);
                 linearLayout.addView(control);
             }
         });
@@ -103,10 +134,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                int[] newposition = {position[0] + 1, position[1]};
-                setPosition(newposition);
+                if(position[0]+1 < rows1)
+                {
+                    int[] newposition = {position[0] + 1, position[1]};
+                    setPosition(newposition);
+                }
+
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "down",feld);
+                createTable(rows1, columns1, "down",feld1,feld2);
                 linearLayout.addView(control);
             }
         });
@@ -118,10 +153,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                int[] newposition = {position[0], position[1] - 1};
-                setPosition(newposition);
+                if(position[1]-1 >= 0)
+                {
+                    int[] newposition = {position[0], position[1] - 1};
+                    setPosition(newposition);
+                }
+
                 linearLayout.removeAllViews();
-                createTable(rows, columns, newposition, "left",feld);
+                createTable(rows1, columns1, "left",feld1,feld2);
                 linearLayout.addView(control);
             }
         });
@@ -143,28 +182,37 @@ public class Game extends AppCompatActivity {
 
     }
 
-    public void createTable(int i,int j,int[] position,String dir,String[] feld){
+    public void createTable(int i1, int j1,String dir,String[] feld1,String[] feld2){
 
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.gametable);
         TableLayout tableLayout = new TableLayout(this);
-        TableLayout.LayoutParams tableParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,0,.7f);
+        TableLayout.LayoutParams tableParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, 0, .7f);
         tableLayout.setLayoutParams(tableParams);
         tableLayout.setBackgroundColor(Color.BLACK);
+        int[]pos = getPosition();
 
-        for (int x = 0;x < i;x++){
+        for (int x = 0;x < i1;x++){
 
             TableRow tableRow = new TableRow(this);
             tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
 
-            for (int y = 0;y < j;y++){
+            for (int y = 0;y < j1;y++){
                 ImageView imageView = new ImageView(this);
 
-                if(feld[x*j+y].equals("tilea2_00_00")){
+                if(feld1[x*j1+y].equals("tilea2_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea2_00_00);
                 }
-                else imageView.setBackgroundResource(R.drawable.tilea1_0_0);
+                else if(feld1[x*j1+y].equals("tilea1_00_00")){
+                    imageView.setBackgroundResource(R.drawable.tilea1_00_00);
+                }
 
-                if ((x==position[0])&&(y==position[1])){
+
+                if(feld2[x*j1+y].equals("tilea2_08_03")){
+                    imageView.setImageResource(R.drawable.tilea2_08_03);
+                }
+
+
+                if ((x==pos[0])&&(y==pos[1])){
                     if(dir.equals("down")){
                         imageView.setImageResource(R.drawable.vx_characters_1_0);
                     }
@@ -184,8 +232,11 @@ public class Game extends AppCompatActivity {
 
             }
 
+
+
             tableLayout.addView(tableRow);
         }
+
 
         linearLayout.addView(tableLayout);
 

@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
     }
 
     public void showcharacter(View view) {
-        Intent intent = new Intent(this, Character.class);
+        Intent intent = new Intent(this, CharacterDB.class);
         click.start();
         music.stop();
         startActivity(intent);
@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
     }
 
     public void battle(View view) {
-        Intent intent = new Intent(this, OptionActivity.class);
+        Intent intent = new Intent(this, Battle.class);
         click.start();
         music.stop();
         startActivity(intent);

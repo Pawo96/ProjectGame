@@ -39,10 +39,14 @@
         </activity>
         <activity
             android:name=".CharacterDB"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".Game"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Battle"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
