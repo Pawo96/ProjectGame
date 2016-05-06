@@ -96,7 +96,7 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[0]-1 >= 0 && feld2[(position[0]-1)*(columns1-1)+position[1]]!= "a")
+                if(position[0]-1 >= 0 && feld2[(position[0]-1)*(columns1)+position[1]].equals("a") )
                 {
                     int[] newposition = {position[0] - 1, position[1]};
                     setPosition(newposition);
@@ -115,7 +115,7 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[1]+1 < columns1)
+                if(position[1]+1 < columns1 && feld2[(position[0])*(columns1)+position[1]+1].equals("a"))
                 {
                     int[] newposition = {position[0], position[1] + 1};
                     setPosition(newposition);
@@ -134,7 +134,7 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[0]+1 < rows1)
+                if(position[0]+1 < rows1 && feld2[(position[0]+1)*(columns1)+position[1]].equals("a"))
                 {
                     int[] newposition = {position[0] + 1, position[1]};
                     setPosition(newposition);
@@ -153,7 +153,7 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[1]-1 >= 0)
+                if(position[1]-1 >= 0 && feld2[(position[0])*(columns1)+position[1]-1].equals("a"))
                 {
                     int[] newposition = {position[0], position[1] - 1};
                     setPosition(newposition);
@@ -210,6 +210,8 @@ public class Game extends AppCompatActivity {
                 if(feld2[x*j1+y].equals("tilea2_08_03")){
                     imageView.setImageResource(R.drawable.tilea2_08_03);
                 }
+
+
 
 
                 if ((x==pos[0])&&(y==pos[1])){
