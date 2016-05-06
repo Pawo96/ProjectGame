@@ -31,14 +31,16 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
-        alertDialog = new AlertDialog.Builder(ctx).create();
-        alertDialog.setTitle("Character Info...");
+
 
     }
 
     @Override
     protected String doInBackground(String... params) {
         String char_url = "http://tswl.bplaced.net/www/character.php";
+        String mapA_url = "http://tswl.bplaced.net/www/mapA.php";
+        String mapB_url = "http://tswl.bplaced.net/www/mapB.php";
+        String monster_url = "http://tswl.bplaced.net/www/monster.php";
         String method = params[0];
         if (method.equals("char")) {
             String name = params[1];
@@ -78,6 +80,84 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+        else if (method.equals("monster")) {
+            String name = params[1];
+            try {
+                URL url = new URL(monster_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                String data =URLEncoder.encode("name","UTF-8") + "=" + URLEncoder.encode(name,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                String response = "";
+                String line = "";
+                while ((line = bufferedReader.readLine())!= null){
+                    response+= line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+
+
+                return response;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (method.equals("map")) {
+            String name = params[1];
+            try {
+                URL url = new URL("http://tswl.bplaced.net/www/map" + name + ".php");
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                String data =URLEncoder.encode("name","UTF-8") + "=" + URLEncoder.encode(name,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                String response = "";
+                String line = "";
+                while ((line = bufferedReader.readLine())!= null){
+                    response+= line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+
+
+                return response;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
         return null;
     }
@@ -89,8 +169,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setMessage(result);
-        alertDialog.show();
+
 
     }
 }
