@@ -28,6 +28,12 @@ public class Game extends AppCompatActivity {
     int columns2;
     int n = 1;
 
+    double felder_hoch = Math.floor((rows1+1)/6);
+    double felder_rechts = Math.floor(columns1+1)/14;
+
+    double felder_hoch_pos = Math.floor((position[0]+1)/6)+1;
+    double felder_rechts_pos = Math.floor((position[1]+1)/14)+1;
+
     String text1;
     String text2;
 
@@ -82,7 +88,7 @@ public class Game extends AppCompatActivity {
 
 
         //Map erstellen
-        createTable(rows1, columns1, "down",feld1,feld2);
+        createTable(rows1, columns1, "down", feld1, feld2);
 
 
 
@@ -96,14 +102,17 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[0]-1 >= 0 && feld2[(position[0]-1)*(columns1)+position[1]].equals("a") )
-                {
+                if (position[0] - 1 >= 0 && feld2[(position[0] - 1) * (columns1) + position[1]].equals("a")) {
                     int[] newposition = {position[0] - 1, position[1]};
+                    if (newposition[0] == felder_hoch_pos * 6) {
+                        felder_hoch_pos--;
+                    }
                     setPosition(newposition);
+
                 }
 
                 linearLayout.removeAllViews();
-                createTable(rows1, columns1, "up",feld1,feld2);
+                createTable(rows1, columns1, "up", feld1, feld2);
                 linearLayout.addView(control);
             }
         });
@@ -115,14 +124,16 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[1]+1 < columns1 && feld2[(position[0])*(columns1)+position[1]+1].equals("a"))
-                {
+                if (position[1] + 1 < columns1 && feld2[(position[0]) * (columns1) + position[1] + 1].equals("a")) {
                     int[] newposition = {position[0], position[1] + 1};
+                    if (newposition[1] == felder_rechts_pos * 14) {
+                        felder_rechts_pos++;
+                    }
                     setPosition(newposition);
                 }
 
                 linearLayout.removeAllViews();
-                createTable(rows1, columns1, "right",feld1,feld2);
+                createTable(rows1, columns1, "right", feld1, feld2);
                 linearLayout.addView(control);
             }
         });
@@ -134,14 +145,17 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[0]+1 < rows1 && feld2[(position[0]+1)*(columns1)+position[1]].equals("a"))
-                {
+                if (position[0] + 1 < rows1 && feld2[(position[0] + 1) * (columns1) + position[1]].equals("a")) {
                     int[] newposition = {position[0] + 1, position[1]};
+                    if (newposition[0] == felder_hoch_pos * 6) {
+                        felder_hoch_pos++;
+                    }
+
                     setPosition(newposition);
                 }
 
                 linearLayout.removeAllViews();
-                createTable(rows1, columns1, "down",feld1,feld2);
+                createTable(rows1, columns1, "down", feld1, feld2);
                 linearLayout.addView(control);
             }
         });
@@ -153,14 +167,17 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
-                if(position[1]-1 >= 0 && feld2[(position[0])*(columns1)+position[1]-1].equals("a"))
-                {
+                if (position[1] - 1 >= 0 && feld2[(position[0]) * (columns1) + position[1] - 1].equals("a")) {
                     int[] newposition = {position[0], position[1] - 1};
+                    if (newposition[1] == felder_rechts_pos * 14) {
+                        felder_rechts_pos--;
+                    }
                     setPosition(newposition);
                 }
 
+
                 linearLayout.removeAllViews();
-                createTable(rows1, columns1, "left",feld1,feld2);
+                createTable(rows1, columns1, "left", feld1, feld2);
                 linearLayout.addView(control);
             }
         });
@@ -191,23 +208,33 @@ public class Game extends AppCompatActivity {
         tableLayout.setBackgroundColor(Color.BLACK);
         int[]pos = getPosition();
 
-        for (int x = 0;x < i1;x++){
+        for (int x = 0;x < i1 && x < 7;x++){
 
             TableRow tableRow = new TableRow(this);
             tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
 
-            for (int y = 0;y < j1;y++){
+            for (int y = 0;y < j1 && y < 15;y++){
                 ImageView imageView = new ImageView(this);
 
-                if(feld1[x*j1+y].equals("tilea2_00_00")){
+                if(feld1[(int)felder_hoch_pos*(x*j1)+(int)felder_rechts_pos*y].equals("tilea2_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea2_00_00);
                 }
-                else if(feld1[x*j1+y].equals("tilea1_00_00")){
+                else if(feld1[(int)felder_hoch_pos*(x*j1)+(int)felder_rechts_pos*y].equals("tilea1_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea1_00_00);
                 }
 
+                if(feld2[(int)felder_hoch_pos*(x*j1)+(int)felder_rechts_pos*y].equals("tilea3_02_02")){
+                    imageView.setBackgroundResource(R.drawable.tilea3_02_02);
+                }
+                else if(feld2[(int)felder_hoch_pos*(x*j1)+(int)felder_rechts_pos*y].equals("tilea3_02_03")){
+                    imageView.setBackgroundResource(R.drawable.tilea3_02_03);
+                }
+                else if(feld2[(int)felder_hoch_pos*(x*j1)+(int)felder_rechts_pos*y].equals("tilec_01_01")){
+                    imageView.setBackgroundResource(R.drawable.tilec_01_01);
+                }
 
-                if(feld2[x*j1+y].equals("tilea2_08_03")){
+
+                if(feld2[(int)felder_hoch_pos*(x*j1)+(int)felder_rechts_pos*y].equals("tilea2_08_03")){
                     imageView.setImageResource(R.drawable.tilea2_08_03);
                 }
 
