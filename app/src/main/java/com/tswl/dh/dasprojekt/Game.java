@@ -107,7 +107,7 @@ public class Game extends AppCompatActivity {
                 int[] position = getPosition();
                 if (position[0] - 1 >= 0 && feld2[(position[0] - 1) * (columns1) + position[1]].equals("a")) {
                     int[] newposition = {position[0] - 1, position[1]};
-                    if (newposition[0] == getFelder_hoch_pos() * 6) {
+                    if (newposition[0] == getFelder_hoch_pos() * 6 - 5) {
                         setFelder_hoch_pos(getFelder_hoch_pos() - 1);
                     }
                     setPosition(newposition);
@@ -150,7 +150,7 @@ public class Game extends AppCompatActivity {
                 int[] position = getPosition();
                 if (position[0] + 1 < rows1 && feld2[(position[0] + 1) * (columns1) + position[1]].equals("a")) {
                     int[] newposition = {position[0] + 1, position[1]};
-                    if (newposition[0] == getFelder_hoch_pos() * 6) {
+                    if (newposition[0] == getFelder_hoch_pos() * 6 + 1) {
                         setFelder_hoch_pos(getFelder_hoch_pos()+1);
                     }
 
@@ -216,7 +216,9 @@ public class Game extends AppCompatActivity {
         int soll;
 
         if(i1+felder_hoch-1 >= felder_hoch_pos*7) {soll = 7;}
-        else {soll = felder_hoch_pos*7 - (i1+felder_hoch-1) - felder_hoch + 1;}
+        else {soll = felder_hoch_pos*7 - i1 - 4;}
+
+
 
         for (int x = 0;x < soll;x++){
 
@@ -226,32 +228,32 @@ public class Game extends AppCompatActivity {
             for (int y = 0;y < j1 && y < 15;y++){
                 ImageView imageView = new ImageView(this);
 
-                if(feld1[(x*j1)+y].equals("tilea2_00_00")){
+                if(feld1[((felder_hoch_pos*6-5)*x*j1)+y].equals("tilea2_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea2_00_00);
                 }
-                else if(feld1[(x*j1)+y].equals("tilea1_00_00")){
+                else if(feld1[((felder_hoch_pos*6-5)*x*j1)+y].equals("tilea1_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea1_00_00);
                 }
 
-                if(feld2[(x*j1)+y].equals("tilea3_02_02")){
+                if(feld2[((felder_hoch_pos*6-5)*x*j1)+y].equals("tilea3_02_02")){
                     imageView.setBackgroundResource(R.drawable.tilea3_02_02);
                 }
-                else if(feld2[(x*j1)+y].equals("tilea3_02_03")){
+                else if(feld2[((felder_hoch_pos*6-5)*x*j1)+y].equals("tilea3_02_03")){
                     imageView.setBackgroundResource(R.drawable.tilea3_02_03);
                 }
-                else if(feld2[(x*j1)+y].equals("tilec_01_01")){
+                else if(feld2[((felder_hoch_pos*6-5)*x*j1)+y].equals("tilec_01_01")){
                     imageView.setBackgroundResource(R.drawable.tilec_01_01);
                 }
 
 
-                if(feld2[(x*j1)+y].equals("tilea2_08_03")){
+                if(feld2[((felder_hoch_pos*6-5)*x*j1)+y].equals("tilea2_08_03")){
                     imageView.setImageResource(R.drawable.tilea2_08_03);
                 }
 
 
 
 
-                if ((x==pos[0])&&(y==pos[1])){
+                if (((felder_hoch_pos*6-5)*x==pos[0])&&(y==pos[1])){
                     if(dir.equals("down")){
                         imageView.setImageResource(R.drawable.vx_characters_1_0);
                     }
@@ -304,8 +306,8 @@ public class Game extends AppCompatActivity {
 
     public void setPosition(int[] position){
         this.position = position;
-        felder_hoch_pos = (int)Math.floor((position[0] + 1) / 6)+1;
-        felder_rechts_pos = (int)Math.floor((position[1] + 1) / 14)+1;
+        //felder_hoch_pos = (int)Math.floor((position[0] + 1) / 6)+1;
+        //felder_rechts_pos = (int)Math.floor((position[1] + 1) / 14)+1;
 
     }
 
