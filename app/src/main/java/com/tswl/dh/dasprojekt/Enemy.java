@@ -1,7 +1,7 @@
 package com.tswl.dh.dasprojekt;
 
 /**
- * Created by Ich on 21.04.2016.
+ * Created by Pascal Wolf on 21.04.2016.
  */
 public class Enemy {
 
