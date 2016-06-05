@@ -118,6 +118,7 @@
         android:layout_marginStart="53dp"
         android:id="@+id/textView12" />
 
+
     <TextView
         android:text="Level"
         android:layout_width="wrap_content"
