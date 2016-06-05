@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -67,9 +68,9 @@ public class Game extends AppCompatActivity {
         felder_hoch = (int)Math.floor((rows1+1)/6);
         felder_rechts = (int)Math.floor(columns1 + 1)/14;
 
-       for (int i = 0;i < map1.length-3; i++){
-           feld1=Arrays.copyOf(feld1,feld1.length+1);
-           feld1[i]=text1.substring(map1[i+2]+1,map1[i+3]);
+        for (int i = 0;i < map1.length-3; i++){
+            feld1=Arrays.copyOf(feld1,feld1.length+1);
+            feld1[i]=text1.substring(map1[i+2]+1,map1[i+3]);
         }
 
         n=1;
@@ -97,16 +98,18 @@ public class Game extends AppCompatActivity {
         final LinearLayout control = new LinearLayout(this);
         final LinearLayout linearLayout = (LinearLayout)findViewById(R.id.gametable);
         linearLayout.addView(control);
-        control.setBackgroundColor(Color.BLUE);
-        Button up = new Button(this);
-        up.setText("UP");
+        control.setBackgroundColor(Color.DKGRAY);
+        ImageButton up = new ImageButton(this);
+        up.setX(5);
+        up.setY(5);
+        up.setImageResource(R.drawable.arrow_up);
         up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
                 if (position[0] - 1 >= 0 && feld2[(position[0] - 1) * (columns1) + position[1]].equals("a")) {
                     int[] newposition = {position[0] - 1, position[1]};
-                    if ((newposition[0] == (getFelder_hoch_pos()-1) * 5)&&(getFelder_hoch_pos() != 1)) {
+                    if ((newposition[0] == (getFelder_hoch_pos() - 1) * 7 - 1) && (getFelder_hoch_pos() != 1)) {
                         setFelder_hoch_pos(getFelder_hoch_pos() - 1);
                     }
                     setPosition(newposition);
@@ -118,18 +121,20 @@ public class Game extends AppCompatActivity {
                 linearLayout.addView(control);
             }
         });
-        control.addView(up);
 
-        Button right = new Button(this);
-        right.setText("RIGHT");
+
+        ImageButton right = new ImageButton(this);
+        right.setImageResource(R.drawable.arrow_right);
+        right.setX(-155);
+        right.setY(75);
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
                 if (position[1] + 1 < columns1 && feld2[(position[0]) * (columns1) + position[1] + 1].equals("a")) {
                     int[] newposition = {position[0], position[1] + 1};
-                    if (newposition[1] == getFelder_rechts_pos() * 14) {
-                        setFelder_rechts_pos(getFelder_rechts_pos()+1);
+                    if (newposition[1] == getFelder_rechts_pos() * 15) {
+                        setFelder_rechts_pos(getFelder_rechts_pos() + 1);
                     }
                     setPosition(newposition);
                 }
@@ -139,18 +144,20 @@ public class Game extends AppCompatActivity {
                 linearLayout.addView(control);
             }
         });
-        control.addView(right);
 
-        Button down = new Button(this);
-        down.setText("DOWN");
+
+        ImageButton down = new ImageButton(this);
+        down.setImageResource(R.drawable.arrow_down);
+        down.setX(-161);
+        down.setY(155);
         down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
                 if (position[0] + 1 < rows1 && feld2[(position[0] + 1) * (columns1) + position[1]].equals("a")) {
                     int[] newposition = {position[0] + 1, position[1]};
-                    if ((newposition[0] == getFelder_hoch_pos() * 6 + 1)) {
-                        setFelder_hoch_pos(getFelder_hoch_pos()+1);
+                    if ((newposition[0] == getFelder_hoch_pos() * 7)) {
+                        setFelder_hoch_pos(getFelder_hoch_pos() + 1);
                     }
 
                     setPosition(newposition);
@@ -161,18 +168,20 @@ public class Game extends AppCompatActivity {
                 linearLayout.addView(control);
             }
         });
-        control.addView(down);
 
-        Button left = new Button(this);
-        left.setText("LEFT");
+
+        ImageButton left = new ImageButton(this);
+        left.setImageResource(R.drawable.arrow_left);
+        left.setY(75);
+        left.setX(5);
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int[] position = getPosition();
                 if (position[1] - 1 >= 0 && feld2[(position[0]) * (columns1) + position[1] - 1].equals("a")) {
                     int[] newposition = {position[0], position[1] - 1};
-                    if (newposition[1] == getFelder_rechts_pos() * 14) {
-                        setFelder_rechts_pos(getFelder_rechts_pos()-1);
+                    if (newposition[1] == (getFelder_rechts_pos() - 1) * 15 - 1) {
+                        setFelder_rechts_pos(getFelder_rechts_pos() - 1);
                     }
                     setPosition(newposition);
                 }
@@ -184,6 +193,9 @@ public class Game extends AppCompatActivity {
             }
         });
         control.addView(left);
+        control.addView(up);
+        control.addView(down);
+        control.addView(right);
 
         Button b = new Button(this);
         b.setText("B");
@@ -212,44 +224,91 @@ public class Game extends AppCompatActivity {
         tableLayout.setBackgroundColor(Color.BLACK);
         int[]pos = getPosition();
 
-        int soll;
-
-        if(i1+felder_hoch-1 >= felder_hoch_pos*7) {soll = 7;}
-        else {soll = felder_hoch_pos*7 - i1 - 4;}
+        int sollx;
+        int solly;
 
 
+        if(i1+felder_hoch-1 >= felder_hoch_pos*7) {sollx = 7;}
+        else {sollx = felder_hoch_pos*7 - i1 - 5;}
 
-        for (int x = 0;x < soll;x++){
+        if(j1+felder_rechts-1 >= felder_rechts_pos*15) {solly = 15;}
+        else { solly = felder_rechts_pos*15 - j1 - 13;}
+
+
+
+        for (int x = 0;x < sollx;x++){
 
             TableRow tableRow = new TableRow(this);
             tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
 
-            for (int y = 0;y < j1 && y < 15;y++){
+            for (int y = 0;y < solly;y++){
                 ImageView imageView = new ImageView(this);
 
-                if(feld1[((felder_hoch_pos-1)*6+x)*j1+y].equals("tilea2_00_00")){
+                if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("tilea2_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea2_00_00);
                 }
-                else if(feld1[((felder_hoch_pos-1)*6+x)*j1+y].equals("tilea1_00_00")){
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("tilea1_00_00")){
                     imageView.setBackgroundResource(R.drawable.tilea1_00_00);
                 }
-                if(feld2[((felder_hoch_pos-1)*6+x)*j1+y].equals("tilea3_02_02")){
-                    imageView.setBackgroundResource(R.drawable.tilea3_02_02);
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_links")){
+                    imageView.setBackgroundResource(R.drawable.weg_links);
                 }
-                else if(feld2[((felder_hoch_pos-1)*6+x)*j1+y].equals("tilea3_02_03")){
-                    imageView.setBackgroundResource(R.drawable.tilea3_02_03);
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_links_oben")){
+                    imageView.setBackgroundResource(R.drawable.weg_links_oben);
                 }
-                else if(feld2[((felder_hoch_pos-1)*6+x)*j1+y].equals("tilec_01_01")){
-                    imageView.setBackgroundResource(R.drawable.tilec_01_01);
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_links_unten")){
+                    imageView.setBackgroundResource(R.drawable.weg_links_unten);
                 }
-                if(feld2[((felder_hoch_pos-1)*6+x)*j1+y].equals("tilea2_08_03")){
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_oben")){
+                    imageView.setBackgroundResource(R.drawable.weg_oben);
+                }
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_rechts")){
+                    imageView.setBackgroundResource(R.drawable.weg_rechts);
+                }
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_rechts_oben")){
+                    imageView.setBackgroundResource(R.drawable.weg_rechts_oben);
+                }
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_rechts_unten")){
+                    imageView.setBackgroundResource(R.drawable.weg_rechts_unten);
+                }
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_unten")){
+                    imageView.setBackgroundResource(R.drawable.weg_unten);
+                }
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("weg_voll")){
+                    imageView.setBackgroundResource(R.drawable.weg_voll);
+                }
+                else if(feld1[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("blume")){
+                    imageView.setBackgroundResource(R.drawable.blume);
+                }
+                if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("dach")){
+                    imageView.setBackgroundResource(R.drawable.dach);
+                }
+                else if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("wand")){
+                    imageView.setBackgroundResource(R.drawable.wand);
+                }
+                else if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("loch")){
+                    imageView.setBackgroundResource(R.drawable.loch);
+                }
+                if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("tilea2_08_03")){
                     imageView.setImageResource(R.drawable.tilea2_08_03);
                 }
+                if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("baum_multi")){
+                    imageView.setImageResource(R.drawable.baum_multi);
+                }
+                if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("baum_oben")){
+                    imageView.setImageResource(R.drawable.baum_oben);
+                }
+                if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("baum_unten")){
+                    imageView.setImageResource(R.drawable.baum_unten);
+                }
+                if(feld2[((felder_hoch_pos-1)*7+x)*j1+y+(felder_rechts_pos-1)*15].equals("busch")){
+                    imageView.setImageResource(R.drawable.busch);
+                }
 
 
 
 
-                if (((felder_hoch_pos-1)*6+x==pos[0])&&(y==pos[1])){
+                if (((getFelder_hoch_pos()-1)*7+x==pos[0])&&((felder_rechts_pos-1)*15+y==pos[1])){
                     if(dir.equals("down")){
                         imageView.setImageResource(R.drawable.vx_characters_1_0);
                     }
