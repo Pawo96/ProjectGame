@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/WHITE"
+        >
+
+
+
+    <Button
+        android:id="@+id/buttonCharacter"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Character"
+        android:textSize="12dp"
+        android:onClick="showCharacter"
+        android:textColor="@color/WHITE"
+        android:layout_marginTop="15dp"
+      />
+
+
+    <Button
+        android:id="@+id/buttonEquipment"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Equipment"
+        android:textSize="12dp"
+        android:layout_below="@+id/buttonCharacter"
+        android:onClick="showEquipment"
+        android:textColor="@color/WHITE"/>
+
+
+
+    <Button
+        android:id="@+id/buttonInventar"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Inventar"
+        android:textSize="12dp"
+        android:layout_below="@+id/buttonEquipment"
+        android:onClick="showInventar"
+        android:textColor="@color/WHITE"/>
+
+
+    <Button
+        android:id="@+id/buttonData"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Manage Data"
+        android:textSize="12dp"
+        android:onClick="showData"
+        android:layout_below="@+id/buttonInventar"
+        android:textColor="@color/WHITE"/>
+
+
+    <Button
+        android:id="@+id/buttonOptions"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Options"
+        android:textSize="12dp"
+        android:onClick="showOption"
+        android:layout_below="@+id/buttonData"
+        android:textColor="@color/WHITE"/>
+
+
+    <Button
+        android:id="@+id/buttonZurueck"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Zurück"
+        android:textSize="12dp"
+        android:onClick="zurueck"
+        android:layout_below="@+id/buttonOptions"
+        android:textColor="@color/WHITE"/>
+
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Close Game"
+        android:textSize="12dp"
+        android:onClick="exit"
+        android:layout_below="@+id/buttonZurueck"
+        android:textColor="@color/WHITE"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView3"
+        android:text="Gold:"
+        android:textSize="15dp"
+        android:textColor="@color/WHITE"
+        android:layout_alignBaseline="@+id/buttonExit"
+        android:layout_alignBottom="@+id/buttonExit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp" />
+
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageAvatar"
+        android:layout_toRightOf="@+id/imageAvatar"
+        android:layout_marginLeft="53dp"
+        android:layout_marginStart="53dp"
+        android:id="@+id/textView12" />
+
+    <TextView
+        android:text="Level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_toRightOf="@+id/textView12"
+        android:layout_toEndOf="@+id/textView12"
+        android:layout_marginLeft="55dp"
+        android:layout_marginStart="55dp"
+        android:id="@+id/textView13"
+        android:layout_alignTop="@+id/textView12" />
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_toLeftOf="@+id/textView13"
+        android:layout_toStartOf="@+id/textView13"
+        android:id="@+id/textView15" />
+
+    <TextView
+        android:text="HP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView16"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_below="@+id/buttonData" />
+
+
+
+    <View android:id="@+id/primerdivisor"
+        android:layout_height="fill_parent"
+        android:layout_width="2dp"
+        android:background="@color/colorPrimaryDark" />
+
+
+
+    <TextView
+        android:text="Level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignLeft="@+id/seekBar3"
+        android:layout_alignStart="@+id/seekBar3"
+        android:id="@+id/textView17" />
+
+    <ImageView
+        android:src="@drawable/personal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageAvatar"
+        android:layout_marginLeft="90dp"
+        android:layout_marginStart="90dp"
+        android:layout_below="@+id/buttonCharacter"
+        android:layout_toRightOf="@+id/buttonCharacter"
+        android:layout_toEndOf="@+id/buttonCharacter" />
+
+    <ImageView
+        android:src="@drawable/personal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_alignLeft="@+id/imageAvatar"
+        android:layout_alignStart="@+id/imageAvatar" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar3"
+        android:max="100"
+        android:layout_below="@+id/buttonEquipment"
+        android:layout_alignRight="@+id/textView13"
+        android:layout_alignEnd="@+id/textView13" />
+
+    <TextView
+        android:text="HP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:layout_alignTop="@+id/seekBar3"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar5"
+        android:max="100"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignRight="@+id/textView17"
+        android:layout_alignEnd="@+id/textView17" />
+
+
+</RelativeLayout>
