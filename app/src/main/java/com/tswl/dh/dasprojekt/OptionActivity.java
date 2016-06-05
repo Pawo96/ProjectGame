@@ -2,6 +2,7 @@ package com.tswl.dh.dasprojekt;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.support.v7.app.ActionBarActivity;
@@ -28,12 +29,21 @@ public class OptionActivity extends ActionBarActivity implements OnSeekBarChange
     private LinearLayout mScreen;
     private static final String suffix_ser_object = "_object.bin";
     Settings person = new Settings();
+    MediaPlayer music;
+    MediaPlayer click;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
 
-
+        music = MediaPlayer.create(this, R.raw.menu);
+        click = MediaPlayer.create(this, R.raw.click);
+        Intent intent = getIntent();
+        Integer position = intent.getIntExtra("position", 0);
+        music.seekTo(position);
+        music.start();
+        music.setLooping(true);
 
         redSeekBarBG = (SeekBar) findViewById(R.id.seekBarBGColor_R);
         greenSeekBarBG = (SeekBar) findViewById(R.id.seekBarBGColor_G);
@@ -71,7 +81,7 @@ public class OptionActivity extends ActionBarActivity implements OnSeekBarChange
         // Standardeinstellungen wie beim Starten der App
         if (on) {
 
-
+           // MediaPlayer music = this.getMediaController();
             redSeekBarBG.setProgress(128);
             greenSeekBarBG.setProgress(128);
             blueSeekBarBG.setProgress(128);
@@ -175,7 +185,11 @@ public class OptionActivity extends ActionBarActivity implements OnSeekBarChange
 
     public void gohome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        click.start();
+        intent.putExtra("position",music.getCurrentPosition());
+        music.stop();
         startActivity(intent);
+        finish();
     }
 }
 

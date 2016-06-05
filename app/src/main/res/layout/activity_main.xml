@@ -17,7 +17,7 @@
         android:textSize="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,17 +28,17 @@
         android:textSize="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
     <Button
         android:id="@+id/buttonplay"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Play"
+        android:text="Play Game"
         android:textSize="15dp"
         android:onClick="play"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
 
     <Button
@@ -49,7 +49,7 @@
         android:text="Battle"
         android:textSize="15dp"
         android:onClick="battle"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
 
 
@@ -61,7 +61,7 @@
         android:text="Character"
         android:textSize="15dp"
         android:onClick="showcharacter"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
 
     <Button
@@ -72,7 +72,7 @@
         android:text="Equipment"
         android:textSize="15dp"
         android:onClick="showequipment"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
     <Button
         android:id="@+id/buttondata"
@@ -82,7 +82,7 @@
         android:text="Manage Data"
         android:textSize="15dp"
         android:onClick="showdata"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
 
     <Button
@@ -93,7 +93,7 @@
         android:text="Options"
         android:textSize="15dp"
         android:onClick="showoption"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
 
     <Button
@@ -104,7 +104,7 @@
         android:text="Close Game"
         android:textSize="15dp"
         android:onClick="exit"
-        android:textColor="@color/white"/>
+        android:textColor="@color/WHITE"/>
 
 
 </LinearLayout>
